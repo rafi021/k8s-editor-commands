@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-queue-worker
+  labels:
+    app: laravel
+    component: queue
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laravel
+      component: queue
+  template:
+    metadata:
+      labels:
+        app: laravel
+        component: queue
+    spec:
+      initContainers:
+        - name: wait-for-redis
+          image: busybox:1.36
+          command: ["/bin/sh", "-c"]
+          args:
+            - >-
+              echo "Waiting for Redis";
+              until nc -z redis 6379; do echo 'Redis not ready'; sleep 3; done;
+              echo "Redis is up";
+      containers:
+        - name: queue-worker
+          image: your-laravel-image:latest  # Replace with your built Laravel image
+          imagePullPolicy: IfNotPresent
+          envFrom:
+            - configMapRef:
+                name: laravel-config
+            - secretRef:
+                name: laravel-secret
+          command: ["/bin/sh", "-c"]
+          args:
+            - >-
+              php artisan queue:work --sleep=3 --tries=3 --timeout=90;
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 300m
+              memory: 256Mi

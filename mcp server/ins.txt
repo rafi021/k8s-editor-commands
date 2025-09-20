@@ -1,0 +1,4 @@
+"Use the docker-optimizer agent to analyze and optimize the Dockerfile in /root/production-issues/bad-docker/ for pushing to ECR. The current image is 2GB and we need to reduce it significantly. Save your optimization report to /root/production-issues/bad-docker/docker-optimization-report.md"
+
+
+

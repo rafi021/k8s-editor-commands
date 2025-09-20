@@ -1,0 +1,7 @@
+apiVersion: v2
+name: nextjs
+version: 0.1.0
+description: A Helm chart for deploying a Next.js app
+home: https://nextjs.org/
+type: application
+appVersion: "1.0.0"

@@ -1,0 +1,23 @@
+I need a comprehensive guide to deploy a Next.js application to a Kubernetes cluster. The environment is a Windows machine with WSL Ubuntu, where the Kubernetes cluster is running. I also need to expose the application so it is accessible from my Windows browser.
+
+Please generate a guide.md file that includes detailed, step-by-step instructions for the entire process, including:
+
+Project Setup: Creating a basic Next.js project.
+
+Containerization: Creating a Dockerfile to containerize the Next.js application.
+
+Kubernetes Deployment:
+
+Writing the Kubernetes manifests (.yaml files) for the Deployment and Service.
+
+Applying these manifests to the Kubernetes cluster running on WSL Ubuntu.
+
+Ingress and Networking:
+
+Configuring an Nginx Ingress Controller to expose the service.
+
+Creating a Ingress resource manifest to route traffic from the host machine to the Next.js service.
+
+Local Access: Instructions on how to access the application from the Windows browser using the host's IP address and a configured hostname.
+
+Assume the user has a basic understanding of Docker, Kubernetes, and Next.js, but needs a clear, linear guide for this specific setup.

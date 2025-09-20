@@ -1,0 +1,20 @@
+1. Chart: {{ .Chart.Name }}  Version: {{ .Chart.Version }}
+2. App Version: {{ .Chart.AppVersion }}
+
+Next steps:
+- Ensure the image repository and tag are correct:
+
+  helm upgrade --install {{ .Release.Name }} ./nextjs \
+    --namespace web \
+    --create-namespace \
+    --set image.repository=<your-dockerhub-username>/nextjs-k8s \
+    --set image.tag=v1
+
+- Check resources:
+
+  kubectl -n web get all -l app.kubernetes.io/instance={{ .Release.Name }}
+
+If ingress is enabled, access via:
+- Host: {{ (index .Values.ingress.hosts 0).host }}
+- Port: Depending on your ingress-nginx setup (NodePort or hostNetwork)
+

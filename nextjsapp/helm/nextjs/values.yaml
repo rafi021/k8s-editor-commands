@@ -1,0 +1,54 @@
+# Default values for nextjs Helm chart.
+# Override these with --set or a custom values file.
+
+image:
+  repository: "<your-dockerhub-username>/nextjs-k8s"
+  tag: "v1"
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 2
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "128Mi"
+  limits:
+    cpu: "500m"
+    memory: "512Mi"
+
+readinessProbe:
+  path: "/"
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+livenessProbe:
+  path: "/"
+  initialDelaySeconds: 15
+  periodSeconds: 20
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations: {}
+  hosts:
+    - host: nextjs.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+podAnnotations: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

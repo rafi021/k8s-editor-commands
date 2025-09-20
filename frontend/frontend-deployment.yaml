@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: nextjs-app
-        image: your-nextjs-app:latest  # Replace with your actual image
+        image: ibrahim021/nextjs-app0:v1  # Replace with your actual image
         ports:
         - containerPort: 3000
           name: http

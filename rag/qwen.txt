@@ -1,0 +1,33 @@
+Analyze the RAG system at /root/rag-debugging/rag-system/rag_system.py
+The system is only achieving 45% accuracy on compliance queries.
+
+1. Identify the 4 main problems causing poor accuracy
+2. For each problem, explain:
+   - What's wrong
+   - Why it impacts accuracy
+   - How to fix it
+3. Create a markdown report and save it as /root/rag-debugging/rag_issues.md
+
+Focus on:
+- Document chunking strategy
+- Metadata extraction
+- Search methodology
+- Query processing
+
+
+
+Based on the problems identified in rag_issues.md, create an improved RAG system that fixes all 4 issues:
+
+1. **Smart Chunking**: Implement sentence-aware chunking with 512 tokens and 50 token overlap
+2. **Metadata Filtering**: Extract AWS service, section, and policy IDs for each chunk
+3. **Hybrid Search**: Combine 70% semantic + 30% keyword search with BM25
+4. **Query Enhancement**: Add acronym expansion and synonym support
+
+Create the improved system as /root/rag-debugging/improved_rag_system.py
+
+Ensure the system:
+- Uses tiktoken for proper token counting
+- Implements BM25 for keyword search
+- Extracts metadata for all AWS services
+- Enhances queries with domain-specific terms
+- Achieves 90%+ accuracy on the test cases
